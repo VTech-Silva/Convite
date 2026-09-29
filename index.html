@@ -4,460 +4,1144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenho uma pergunta... ❤️</title>
+  <meta name="theme-color" content="#fff7fa">
+
+  <title>Uma pergunta importante... ❤️</title>
 
   <style>
+    :root {
+      --rosa: #ff477e;
+      --rosa2: #ff7096;
+      --vermelho: #f52f63;
+      --texto: #34262b;
+      --texto2: #79656c;
+      --branco: #ffffff;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
     }
 
     body {
-      width: 100vw;
-      height: 100vh;
+      min-height: 100dvh;
       overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--texto);
+
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 30%),
-        linear-gradient(135deg, #ffdde1, #ee9ca7);
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.95), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.65), transparent 30%),
+        linear-gradient(135deg, #fff1f5 0%, #ffd6e2 45%, #ffc1d3 100%);
+
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 22px;
+
       position: relative;
     }
 
-    /* Corações do fundo */
-    .heart {
-      position: absolute;
-      bottom: -50px;
-      font-size: 25px;
-      opacity: 0.25;
-      animation: subir linear infinite;
+    /* =====================================================
+       FUNDO
+    ===================================================== */
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(3px);
+      opacity: .35;
       pointer-events: none;
+      animation: blob 9s ease-in-out infinite alternate;
+    }
+
+    .blob-1 {
+      width: 330px;
+      height: 330px;
+      background: #ff91af;
+      left: -120px;
+      top: -100px;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: #fff;
+      right: -170px;
+      bottom: -180px;
+      animation-delay: -3s;
+    }
+
+    @keyframes blob {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(35px, 20px) scale(1.12);
+      }
+    }
+
+    .coracao-fundo {
+      position: fixed;
+      bottom: -60px;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      animation: subir linear forwards;
+      z-index: 0;
     }
 
     @keyframes subir {
-      from {
-        transform: translateY(0) rotate(0deg);
+      0% {
+        transform: translateY(0) rotate(0deg) scale(.8);
+        opacity: 0;
       }
-      to {
-        transform: translateY(-120vh) rotate(360deg);
+
+      10% {
+        opacity: .25;
+      }
+
+      85% {
+        opacity: .18;
+      }
+
+      100% {
+        transform: translateY(-120vh) rotate(360deg) scale(1.3);
+        opacity: 0;
       }
     }
 
-    /* Card principal */
+    /* =====================================================
+       CARD
+    ===================================================== */
+
     .card {
-      width: min(90%, 520px);
-      padding: 45px 30px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(15px);
-      border-radius: 30px;
-      text-align: center;
-      box-shadow: 0 25px 70px rgba(120, 30, 50, 0.25);
-      z-index: 5;
       position: relative;
+      z-index: 10;
+
+      width: min(94vw, 540px);
+
+      padding: 48px 34px 40px;
+
+      border-radius: 32px;
+
+      background: rgba(255, 255, 255, .82);
+
+      border: 1px solid rgba(255,255,255,.8);
+
+      box-shadow:
+        0 30px 80px rgba(133, 44, 73, .17),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      text-align: center;
     }
 
-    .emoji {
-      font-size: 65px;
-      margin-bottom: 15px;
-      animation: pulsar 1.5s infinite;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 8px 14px;
+      border-radius: 100px;
+
+      background: #fff0f5;
+
+      color: #d83668;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      margin-bottom: 25px;
     }
 
-    @keyframes pulsar {
+    .emoji-principal {
+      font-size: 68px;
+      line-height: 1;
+
+      margin-bottom: 19px;
+
+      display: inline-block;
+
+      animation: respirar 2.1s ease-in-out infinite;
+    }
+
+    @keyframes respirar {
       0%, 100% {
-        transform: scale(1);
+        transform: scale(1) rotate(-2deg);
       }
+
       50% {
-        transform: scale(1.12);
+        transform: scale(1.09) rotate(2deg);
       }
     }
 
     h1 {
-      color: #3c2530;
-      font-size: clamp(26px, 5vw, 38px);
+      font-size: clamp(29px, 6vw, 42px);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+
       margin-bottom: 15px;
     }
 
-    .descricao {
-      color: #765b65;
+    #mensagem {
+      min-height: 52px;
+
+      color: var(--texto2);
+
       font-size: 17px;
-      line-height: 1.5;
-      margin-bottom: 35px;
+      line-height: 1.55;
+
+      max-width: 420px;
+      margin: auto;
+
+      transition: opacity .18s ease, transform .18s ease;
     }
 
-    .botoes {
+    .mensagem-trocando {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    /* =====================================================
+       BOTÕES
+    ===================================================== */
+
+    .area-botoes {
+      min-height: 80px;
+
+      margin-top: 27px;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 18px;
-      min-height: 60px;
+
+      gap: 15px;
+
+      position: relative;
     }
 
     button {
-      border: none;
-      border-radius: 50px;
-      padding: 15px 35px;
-      font-size: 17px;
-      font-weight: bold;
+      border: 0;
+      outline: none;
+
+      min-width: 125px;
+
+      padding: 16px 28px;
+
+      border-radius: 100px;
+
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 800;
+
       cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+
+      user-select: none;
     }
 
     #sim {
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      position: relative;
+
+      background:
+        linear-gradient(135deg, var(--rosa), var(--vermelho));
+
       color: white;
-      box-shadow: 0 8px 25px rgba(255, 65, 108, 0.35);
+
+      box-shadow:
+        0 12px 30px rgba(245,47,99,.28);
+
+      transition:
+        transform .25s cubic-bezier(.2,.8,.2,1),
+        box-shadow .25s ease;
+
+      z-index: 20;
     }
 
     #sim:hover {
-      transform: scale(1.08);
-      box-shadow: 0 12px 35px rgba(255, 65, 108, 0.5);
+      box-shadow:
+        0 16px 38px rgba(245,47,99,.38);
+    }
+
+    #sim:active {
+      filter: brightness(.96);
     }
 
     #nao {
-      background: #eeeeee;
-      color: #555;
-      z-index: 9999;
+      background: #f1edef;
+      color: #695c61;
+
+      position: relative;
+
+      z-index: 999;
+
+      transition:
+        left .16s cubic-bezier(.2,.8,.2,1),
+        top .16s cubic-bezier(.2,.8,.2,1),
+        transform .15s ease;
+
+      will-change: left, top;
     }
 
-    /* Tela de sucesso */
-    .sucesso {
-      display: none;
+    /* =====================================================
+       CONTADOR
+    ===================================================== */
+
+    #contador {
+      height: 24px;
+
+      margin-top: 14px;
+
+      color: #aa7b89;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      opacity: 0;
+
+      transition: opacity .3s ease;
+    }
+
+    #contador.visivel {
+      opacity: 1;
+    }
+
+    /* =====================================================
+       TELA FINAL
+    ===================================================== */
+
+    #final {
       position: fixed;
       inset: 0;
+
       z-index: 10000;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      align-items: center;
+
+      display: none;
+
       justify-content: center;
+      align-items: center;
+
+      padding: 25px;
+
+      background:
+        radial-gradient(circle at center, #ff8fab, #f54b78);
+
+      overflow: hidden;
+    }
+
+    #final.ativo {
+      display: flex;
+    }
+
+    .final-conteudo {
+      position: relative;
+      z-index: 10002;
+
       text-align: center;
-      padding: 30px;
-    }
 
-    .sucesso-conteudo {
       color: white;
-      animation: aparecer 0.7s ease;
+
+      animation: entradaFinal .7s cubic-bezier(.16,1,.3,1);
     }
 
-    .sucesso-conteudo .icone {
-      font-size: 90px;
-      margin-bottom: 20px;
-    }
-
-    .sucesso-conteudo h2 {
-      font-size: clamp(34px, 7vw, 65px);
-      margin-bottom: 15px;
-    }
-
-    .sucesso-conteudo p {
-      font-size: clamp(18px, 3vw, 24px);
-      opacity: 0.95;
-    }
-
-    @keyframes aparecer {
+    @keyframes entradaFinal {
       from {
         opacity: 0;
-        transform: scale(0.7);
+        transform: translateY(30px) scale(.85);
       }
+
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
       }
     }
 
-    /* Confetes/corações */
+    .final-emoji {
+      font-size: clamp(80px, 15vw, 125px);
+      margin-bottom: 20px;
+
+      animation: comemorar .7s ease-in-out infinite alternate;
+    }
+
+    @keyframes comemorar {
+      from {
+        transform: rotate(-5deg) scale(1);
+      }
+
+      to {
+        transform: rotate(5deg) scale(1.08);
+      }
+    }
+
+    #final h2 {
+      font-size: clamp(40px, 9vw, 72px);
+      line-height: 1;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 18px;
+    }
+
+    #final p {
+      font-size: clamp(17px, 4vw, 22px);
+      line-height: 1.5;
+
+      max-width: 550px;
+
+      margin: auto;
+
+      opacity: .95;
+    }
+
+    .assinatura {
+      margin-top: 25px !important;
+
+      font-size: 14px !important;
+
+      opacity: .75 !important;
+    }
+
+    /* =====================================================
+       CONFETES
+    ===================================================== */
+
     .confete {
       position: fixed;
-      z-index: 10001;
+      top: -80px;
+
       pointer-events: none;
-      animation: cair 3s linear forwards;
+
+      z-index: 10001;
+
+      animation: cair linear forwards;
     }
 
     @keyframes cair {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
+      from {
+        transform:
+          translateY(-10vh)
+          rotate(0deg);
       }
-      100% {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0.7;
+
+      to {
+        transform:
+          translateY(120vh)
+          rotate(900deg);
       }
     }
 
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
     @media (max-width: 600px) {
-      .card {
-        padding: 38px 22px;
+
+      body {
+        padding: 16px;
       }
 
-      .botoes {
-        gap: 12px;
+      .card {
+        width: 100%;
+        padding: 37px 20px 31px;
+        border-radius: 27px;
+      }
+
+      .emoji-principal {
+        font-size: 60px;
+      }
+
+      #mensagem {
+        font-size: 16px;
       }
 
       button {
-        padding: 14px 27px;
-        font-size: 16px;
+        min-width: 115px;
+        padding: 15px 22px;
       }
+
+      .area-botoes {
+        gap: 10px;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="card">
-    <div class="emoji">🥺❤️</div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-    <h1>Quer sair comigo?</h1>
 
-    <p class="descricao">
-      Pense com bastante cuidado antes de responder... 👀
+  <!-- ===================================================
+       CONVITE
+  ==================================================== -->
+
+  <main class="card">
+
+    <div class="badge">
+      💌 Convite importante
+    </div>
+
+    <div class="emoji-principal" id="emoji">
+      🥺
+    </div>
+
+    <h1>
+      Quer sair comigo?
+    </h1>
+
+    <p id="mensagem">
+      Pense com carinho antes de responder... 👀
     </p>
 
-    <div class="botoes">
-      <button id="sim">Sim ❤️</button>
-      <button id="nao">Não 😒</button>
-    </div>
-  </div>
 
-  <div class="sucesso" id="sucesso">
-    <div class="sucesso-conteudo">
-      <div class="icone">🥰</div>
-      <h2>EU SABIA! ❤️</h2>
-      <p>
-        Excelente escolha. Sabia que você era uma pessoa inteligente 😂💕
-      </p>
+    <div class="area-botoes">
+
+      <button id="sim">
+        Sim ❤️
+      </button>
+
+      <button id="nao">
+        Não
+      </button>
+
     </div>
-  </div>
+
+
+    <div id="contador"></div>
+
+  </main>
+
+
+  <!-- ===================================================
+       FINAL
+  ==================================================== -->
+
+  <section id="final">
+
+    <div class="final-conteudo">
+
+      <div class="final-emoji">
+        🥰
+      </div>
+
+      <h2>
+        EU SABIA!
+      </h2>
+
+      <p>
+        Excelente escolha. ❤️
+        <br>
+        Sabia que você era uma pessoa inteligente.
+      </p>
+
+      <p class="assinatura">
+        Agora não tem mais volta 😂💕
+      </p>
+
+    </div>
+
+  </section>
+
 
   <script>
-    const botaoNao = document.getElementById("nao");
-    const botaoSim = document.getElementById("sim");
-    const sucesso = document.getElementById("sucesso");
 
-    let fugindo = false;
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
 
-    // =========================
-    // BOTÃO "NÃO" FOGE
-    // =========================
+    const nao = document.getElementById("nao");
+    const sim = document.getElementById("sim");
 
-    function fugir() {
+    const mensagem =
+      document.getElementById("mensagem");
 
-      if (!fugindo) {
-        const rect = botaoNao.getBoundingClientRect();
+    const contador =
+      document.getElementById("contador");
 
-        botaoNao.style.position = "fixed";
-        botaoNao.style.left = rect.left + "px";
-        botaoNao.style.top = rect.top + "px";
+    const emoji =
+      document.getElementById("emoji");
 
-        fugindo = true;
+    const final =
+      document.getElementById("final");
+
+
+    /* =====================================================
+       ESTADO
+    ===================================================== */
+
+    let tentativas = 0;
+    let botaoSolto = false;
+
+    let escalaSim = 1;
+
+
+    /* =====================================================
+       MENSAGENS
+    ===================================================== */
+
+    const mensagens = [
+
+      {
+        texto:
+          "Ué... tentou clicar no Não? 🤨",
+        emoji: "🤨"
+      },
+
+      {
+        texto:
+          "Acho que esse botão não está colaborando 😂",
+        emoji: "😂"
+      },
+
+      {
+        texto:
+          "Você está realmente insistindo nisso? 👀",
+        emoji: "👀"
+      },
+
+      {
+        texto:
+          "Talvez seja um sinal para escolher o outro botão...",
+        emoji: "😌"
+      },
+
+      {
+        texto:
+          "Desiste, você não vai conseguir 😂",
+        emoji: "😏"
+      },
+
+      {
+        texto:
+          "Olha o botão vermelho ali... ele parece bem mais simpático ❤️",
+        emoji: "🥰"
+      },
+
+      {
+        texto:
+          "Você ainda está tentando??? 😭",
+        emoji: "😭"
+      },
+
+      {
+        texto:
+          "Nesse ponto já virou uma questão de orgulho, né?",
+        emoji: "😂"
+      },
+
+      {
+        texto:
+          "Spoiler: só existe uma resposta possível. 👀",
+        emoji: "😈"
+      },
+
+      {
+        texto:
+          "Eu posso ficar aqui o dia inteiro.",
+        emoji: "😌"
       }
 
-      const larguraBotao = botaoNao.offsetWidth;
-      const alturaBotao = botaoNao.offsetHeight;
-
-      // Margem para garantir que nunca saia da tela
-      const margem = 15;
-
-      const larguraDisponivel =
-        window.innerWidth - larguraBotao - margem * 2;
-
-      const alturaDisponivel =
-        window.innerHeight - alturaBotao - margem * 2;
-
-      const novaPosicaoX =
-        margem + Math.random() * larguraDisponivel;
-
-      const novaPosicaoY =
-        margem + Math.random() * alturaDisponivel;
-
-      botaoNao.style.left = novaPosicaoX + "px";
-      botaoNao.style.top = novaPosicaoY + "px";
-    }
+    ];
 
 
-    // =========================
-    // DESKTOP
-    // =========================
+    /* =====================================================
+       ATUALIZA TEXTO
+    ===================================================== */
 
-    document.addEventListener("mousemove", function(event) {
+    function atualizarMensagem() {
 
-      const rect = botaoNao.getBoundingClientRect();
+      const indice =
+        Math.min(
+          tentativas - 1,
+          mensagens.length - 1
+        );
 
-      const centroX = rect.left + rect.width / 2;
-      const centroY = rect.top + rect.height / 2;
-
-      const distanciaX = event.clientX - centroX;
-      const distanciaY = event.clientY - centroY;
-
-      const distancia = Math.sqrt(
-        distanciaX * distanciaX +
-        distanciaY * distanciaY
+      mensagem.classList.add(
+        "mensagem-trocando"
       );
 
-      // Quanto maior, mais cedo o botão foge
-      const distanciaDeFuga = 110;
-
-      if (distancia < distanciaDeFuga) {
-        fugir();
-      }
-    });
-
-
-    // Segurança extra caso alguém consiga encostar
-    botaoNao.addEventListener("mouseenter", fugir);
-
-    botaoNao.addEventListener("mousedown", function(event) {
-      event.preventDefault();
-      fugir();
-    });
-
-    botaoNao.addEventListener("click", function(event) {
-      event.preventDefault();
-      fugir();
-    });
-
-
-    // =========================
-    // MOBILE
-    // =========================
-
-    botaoNao.addEventListener(
-      "touchstart",
-      function(event) {
-        event.preventDefault();
-        fugir();
-      },
-      { passive: false }
-    );
-
-
-    // =========================
-    // BOTÃO SIM
-    // =========================
-
-    botaoSim.addEventListener("click", function() {
-
-      sucesso.style.display = "flex";
-
-      criarConfetes();
-    });
-
-
-    // =========================
-    // CONFETES
-    // =========================
-
-    function criarConfetes() {
-
-      const emojis = [
-        "❤️",
-        "💕",
-        "💖",
-        "💗",
-        "🥰",
-        "✨",
-        "💘"
-      ];
-
-      for (let i = 0; i < 80; i++) {
-
-        setTimeout(() => {
-
-          const confete = document.createElement("div");
-
-          confete.classList.add("confete");
-
-          confete.innerText =
-            emojis[
-              Math.floor(Math.random() * emojis.length)
-            ];
-
-          confete.style.left =
-            Math.random() * 100 + "vw";
-
-          confete.style.top = "-60px";
-
-          confete.style.fontSize =
-            15 + Math.random() * 30 + "px";
-
-          confete.style.animationDuration =
-            2 + Math.random() * 3 + "s";
-
-          document.body.appendChild(confete);
-
-          setTimeout(() => {
-            confete.remove();
-          }, 5000);
-
-        }, i * 30);
-      }
-    }
-
-
-    // =========================
-    // CORAÇÕES NO FUNDO
-    // =========================
-
-    function criarCoracaoFundo() {
-
-      const coracao = document.createElement("div");
-
-      coracao.classList.add("heart");
-      coracao.innerText = "❤";
-
-      coracao.style.left =
-        Math.random() * 100 + "vw";
-
-      coracao.style.fontSize =
-        15 + Math.random() * 30 + "px";
-
-      coracao.style.animationDuration =
-        6 + Math.random() * 8 + "s";
-
-      document.body.appendChild(coracao);
-
       setTimeout(() => {
-        coracao.remove();
-      }, 15000);
+
+        mensagem.textContent =
+          mensagens[indice].texto;
+
+        emoji.textContent =
+          mensagens[indice].emoji;
+
+        mensagem.classList.remove(
+          "mensagem-trocando"
+        );
+
+      }, 150);
+
     }
 
-    setInterval(criarCoracaoFundo, 700);
+
+    /* =====================================================
+       LIBERA BOTÃO DO FLUXO
+    ===================================================== */
+
+    function soltarBotao() {
+
+      if (botaoSolto) return;
+
+      const rect =
+        nao.getBoundingClientRect();
+
+      nao.style.position = "fixed";
+
+      nao.style.left =
+        rect.left + "px";
+
+      nao.style.top =
+        rect.top + "px";
+
+      nao.style.margin = "0";
+
+      botaoSolto = true;
+
+    }
 
 
-    // =========================
-    // RESIZE
-    // Mantém o NÃO dentro da tela
-    // =========================
+    /* =====================================================
+       POSIÇÃO SEGURA
+    ===================================================== */
 
-    window.addEventListener("resize", function() {
+    function posicaoSegura() {
 
-      if (!fugindo) return;
+      const margem = 18;
 
-      const rect = botaoNao.getBoundingClientRect();
+      const largura =
+        nao.offsetWidth;
 
-      const margem = 15;
-
-      let x = rect.left;
-      let y = rect.top;
+      const altura =
+        nao.offsetHeight;
 
       const maxX =
         window.innerWidth -
-        botaoNao.offsetWidth -
+        largura -
         margem;
 
       const maxY =
         window.innerHeight -
-        botaoNao.offsetHeight -
+        altura -
         margem;
 
-      x = Math.max(margem, Math.min(x, maxX));
-      y = Math.max(margem, Math.min(y, maxY));
+      const x =
+        margem +
+        Math.random() *
+        Math.max(0, maxX - margem);
 
-      botaoNao.style.left = x + "px";
-      botaoNao.style.top = y + "px";
-    });
+      const y =
+        margem +
+        Math.random() *
+        Math.max(0, maxY - margem);
+
+      return { x, y };
+
+    }
+
+
+    /* =====================================================
+       FAZ O NÃO FUGIR
+    ===================================================== */
+
+    function fugir() {
+
+      soltarBotao();
+
+      tentativas++;
+
+
+      /* -------------------------
+         Nova posição
+      ------------------------- */
+
+      const destino =
+        posicaoSegura();
+
+      nao.style.left =
+        destino.x + "px";
+
+      nao.style.top =
+        destino.y + "px";
+
+
+      /* -------------------------
+         Mensagem
+      ------------------------- */
+
+      atualizarMensagem();
+
+
+      /* -------------------------
+         Contador
+      ------------------------- */
+
+      if (tentativas >= 3) {
+
+        contador.classList.add(
+          "visivel"
+        );
+
+        contador.textContent =
+          `${tentativas} tentativas de dizer não. Impressionante 😂`;
+
+      }
+
+
+      /* -------------------------
+         SIM cresce
+      ------------------------- */
+
+      escalaSim =
+        Math.min(
+          1 + tentativas * 0.035,
+          1.32
+        );
+
+      sim.style.transform =
+        `scale(${escalaSim})`;
+
+    }
+
+
+    /* =====================================================
+       DETECÇÃO DO MOUSE
+
+       O botão foge ANTES do cursor chegar nele.
+    ===================================================== */
+
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const rect =
+          nao.getBoundingClientRect();
+
+        const centroX =
+          rect.left +
+          rect.width / 2;
+
+        const centroY =
+          rect.top +
+          rect.height / 2;
+
+        const dx =
+          event.clientX -
+          centroX;
+
+        const dy =
+          event.clientY -
+          centroY;
+
+        const distancia =
+          Math.sqrt(
+            dx * dx +
+            dy * dy
+          );
+
+        /*
+          Distância de segurança.
+          O mouse nem precisa encostar.
+        */
+
+        if (distancia < 105) {
+          fugir();
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SEGURANÇAS EXTRAS
+    ===================================================== */
+
+    nao.addEventListener(
+      "mouseenter",
+      fugir
+    );
+
+
+    nao.addEventListener(
+      "pointerdown",
+      (event) => {
+
+        event.preventDefault();
+        fugir();
+
+      }
+    );
+
+
+    nao.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        fugir();
+
+      }
+    );
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    nao.addEventListener(
+      "touchstart",
+      (event) => {
+
+        event.preventDefault();
+
+        fugir();
+
+      },
+      {
+        passive: false
+      }
+    );
+
+
+    /* =====================================================
+       CLIQUE NO SIM
+    ===================================================== */
+
+    sim.addEventListener(
+      "click",
+      () => {
+
+        final.classList.add(
+          "ativo"
+        );
+
+        explosao();
+
+      }
+    );
+
+
+    /* =====================================================
+       CONFETES
+    ===================================================== */
+
+    function explosao() {
+
+      const itens = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "💘",
+        "✨",
+        "🥰",
+        "🌹"
+      ];
+
+      for (
+        let i = 0;
+        i < 120;
+        i++
+      ) {
+
+        setTimeout(() => {
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+          item.className =
+            "confete";
+
+          item.textContent =
+            itens[
+              Math.floor(
+                Math.random() *
+                itens.length
+              )
+            ];
+
+          item.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+          item.style.fontSize =
+            15 +
+            Math.random() *
+            28 +
+            "px";
+
+          item.style.animationDuration =
+            2.5 +
+            Math.random() *
+            3 +
+            "s";
+
+          document.body.appendChild(
+            item
+          );
+
+          setTimeout(
+            () => item.remove(),
+            6000
+          );
+
+        }, i * 20);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       CORAÇÕES DO FUNDO
+    ===================================================== */
+
+    function criarCoracao() {
+
+      if (
+        final.classList.contains(
+          "ativo"
+        )
+      ) {
+        return;
+      }
+
+      const coracao =
+        document.createElement(
+          "div"
+        );
+
+      coracao.className =
+        "coracao-fundo";
+
+      const opcoes = [
+        "♡",
+        "♥",
+        "💕"
+      ];
+
+      coracao.textContent =
+        opcoes[
+          Math.floor(
+            Math.random() *
+            opcoes.length
+          )
+        ];
+
+      coracao.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+      coracao.style.fontSize =
+        14 +
+        Math.random() *
+        25 +
+        "px";
+
+      coracao.style.animationDuration =
+        7 +
+        Math.random() *
+        6 +
+        "s";
+
+      document.body.appendChild(
+        coracao
+      );
+
+      setTimeout(
+        () => coracao.remove(),
+        14000
+      );
+
+    }
+
+
+    setInterval(
+      criarCoracao,
+      800
+    );
+
+
+    /* =====================================================
+       RESIZE
+
+       Se virar o celular ou redimensionar
+       o navegador, o botão continua visível.
+    ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (!botaoSolto) return;
+
+        const margem = 18;
+
+        const rect =
+          nao.getBoundingClientRect();
+
+        const maxX =
+          window.innerWidth -
+          nao.offsetWidth -
+          margem;
+
+        const maxY =
+          window.innerHeight -
+          nao.offsetHeight -
+          margem;
+
+        const x =
+          Math.max(
+            margem,
+            Math.min(
+              rect.left,
+              maxX
+            )
+          );
+
+        const y =
+          Math.max(
+            margem,
+            Math.min(
+              rect.top,
+              maxY
+            )
+          );
+
+        nao.style.left =
+          x + "px";
+
+        nao.style.top =
+          y + "px";
+
+      }
+    );
 
   </script>
 
