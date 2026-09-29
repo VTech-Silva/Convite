@@ -1,0 +1,466 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenho uma pergunta... ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 30%),
+        linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Corações do fundo */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 25px;
+      opacity: 0.25;
+      animation: subir linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      from {
+        transform: translateY(0) rotate(0deg);
+      }
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+      }
+    }
+
+    /* Card principal */
+    .card {
+      width: min(90%, 520px);
+      padding: 45px 30px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(120, 30, 50, 0.25);
+      z-index: 5;
+      position: relative;
+    }
+
+    .emoji {
+      font-size: 65px;
+      margin-bottom: 15px;
+      animation: pulsar 1.5s infinite;
+    }
+
+    @keyframes pulsar {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    h1 {
+      color: #3c2530;
+      font-size: clamp(26px, 5vw, 38px);
+      margin-bottom: 15px;
+    }
+
+    .descricao {
+      color: #765b65;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 35px;
+    }
+
+    .botoes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      min-height: 60px;
+    }
+
+    button {
+      border: none;
+      border-radius: 50px;
+      padding: 15px 35px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    #sim {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      box-shadow: 0 8px 25px rgba(255, 65, 108, 0.35);
+    }
+
+    #sim:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 35px rgba(255, 65, 108, 0.5);
+    }
+
+    #nao {
+      background: #eeeeee;
+      color: #555;
+      z-index: 9999;
+    }
+
+    /* Tela de sucesso */
+    .sucesso {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .sucesso-conteudo {
+      color: white;
+      animation: aparecer 0.7s ease;
+    }
+
+    .sucesso-conteudo .icone {
+      font-size: 90px;
+      margin-bottom: 20px;
+    }
+
+    .sucesso-conteudo h2 {
+      font-size: clamp(34px, 7vw, 65px);
+      margin-bottom: 15px;
+    }
+
+    .sucesso-conteudo p {
+      font-size: clamp(18px, 3vw, 24px);
+      opacity: 0.95;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Confetes/corações */
+    .confete {
+      position: fixed;
+      z-index: 10001;
+      pointer-events: none;
+      animation: cair 3s linear forwards;
+    }
+
+    @keyframes cair {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 38px 22px;
+      }
+
+      .botoes {
+        gap: 12px;
+      }
+
+      button {
+        padding: 14px 27px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="emoji">🥺❤️</div>
+
+    <h1>Quer sair comigo?</h1>
+
+    <p class="descricao">
+      Pense com bastante cuidado antes de responder... 👀
+    </p>
+
+    <div class="botoes">
+      <button id="sim">Sim ❤️</button>
+      <button id="nao">Não 😒</button>
+    </div>
+  </div>
+
+  <div class="sucesso" id="sucesso">
+    <div class="sucesso-conteudo">
+      <div class="icone">🥰</div>
+      <h2>EU SABIA! ❤️</h2>
+      <p>
+        Excelente escolha. Sabia que você era uma pessoa inteligente 😂💕
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const botaoNao = document.getElementById("nao");
+    const botaoSim = document.getElementById("sim");
+    const sucesso = document.getElementById("sucesso");
+
+    let fugindo = false;
+
+    // =========================
+    // BOTÃO "NÃO" FOGE
+    // =========================
+
+    function fugir() {
+
+      if (!fugindo) {
+        const rect = botaoNao.getBoundingClientRect();
+
+        botaoNao.style.position = "fixed";
+        botaoNao.style.left = rect.left + "px";
+        botaoNao.style.top = rect.top + "px";
+
+        fugindo = true;
+      }
+
+      const larguraBotao = botaoNao.offsetWidth;
+      const alturaBotao = botaoNao.offsetHeight;
+
+      // Margem para garantir que nunca saia da tela
+      const margem = 15;
+
+      const larguraDisponivel =
+        window.innerWidth - larguraBotao - margem * 2;
+
+      const alturaDisponivel =
+        window.innerHeight - alturaBotao - margem * 2;
+
+      const novaPosicaoX =
+        margem + Math.random() * larguraDisponivel;
+
+      const novaPosicaoY =
+        margem + Math.random() * alturaDisponivel;
+
+      botaoNao.style.left = novaPosicaoX + "px";
+      botaoNao.style.top = novaPosicaoY + "px";
+    }
+
+
+    // =========================
+    // DESKTOP
+    // =========================
+
+    document.addEventListener("mousemove", function(event) {
+
+      const rect = botaoNao.getBoundingClientRect();
+
+      const centroX = rect.left + rect.width / 2;
+      const centroY = rect.top + rect.height / 2;
+
+      const distanciaX = event.clientX - centroX;
+      const distanciaY = event.clientY - centroY;
+
+      const distancia = Math.sqrt(
+        distanciaX * distanciaX +
+        distanciaY * distanciaY
+      );
+
+      // Quanto maior, mais cedo o botão foge
+      const distanciaDeFuga = 110;
+
+      if (distancia < distanciaDeFuga) {
+        fugir();
+      }
+    });
+
+
+    // Segurança extra caso alguém consiga encostar
+    botaoNao.addEventListener("mouseenter", fugir);
+
+    botaoNao.addEventListener("mousedown", function(event) {
+      event.preventDefault();
+      fugir();
+    });
+
+    botaoNao.addEventListener("click", function(event) {
+      event.preventDefault();
+      fugir();
+    });
+
+
+    // =========================
+    // MOBILE
+    // =========================
+
+    botaoNao.addEventListener(
+      "touchstart",
+      function(event) {
+        event.preventDefault();
+        fugir();
+      },
+      { passive: false }
+    );
+
+
+    // =========================
+    // BOTÃO SIM
+    // =========================
+
+    botaoSim.addEventListener("click", function() {
+
+      sucesso.style.display = "flex";
+
+      criarConfetes();
+    });
+
+
+    // =========================
+    // CONFETES
+    // =========================
+
+    function criarConfetes() {
+
+      const emojis = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "🥰",
+        "✨",
+        "💘"
+      ];
+
+      for (let i = 0; i < 80; i++) {
+
+        setTimeout(() => {
+
+          const confete = document.createElement("div");
+
+          confete.classList.add("confete");
+
+          confete.innerText =
+            emojis[
+              Math.floor(Math.random() * emojis.length)
+            ];
+
+          confete.style.left =
+            Math.random() * 100 + "vw";
+
+          confete.style.top = "-60px";
+
+          confete.style.fontSize =
+            15 + Math.random() * 30 + "px";
+
+          confete.style.animationDuration =
+            2 + Math.random() * 3 + "s";
+
+          document.body.appendChild(confete);
+
+          setTimeout(() => {
+            confete.remove();
+          }, 5000);
+
+        }, i * 30);
+      }
+    }
+
+
+    // =========================
+    // CORAÇÕES NO FUNDO
+    // =========================
+
+    function criarCoracaoFundo() {
+
+      const coracao = document.createElement("div");
+
+      coracao.classList.add("heart");
+      coracao.innerText = "❤";
+
+      coracao.style.left =
+        Math.random() * 100 + "vw";
+
+      coracao.style.fontSize =
+        15 + Math.random() * 30 + "px";
+
+      coracao.style.animationDuration =
+        6 + Math.random() * 8 + "s";
+
+      document.body.appendChild(coracao);
+
+      setTimeout(() => {
+        coracao.remove();
+      }, 15000);
+    }
+
+    setInterval(criarCoracaoFundo, 700);
+
+
+    // =========================
+    // RESIZE
+    // Mantém o NÃO dentro da tela
+    // =========================
+
+    window.addEventListener("resize", function() {
+
+      if (!fugindo) return;
+
+      const rect = botaoNao.getBoundingClientRect();
+
+      const margem = 15;
+
+      let x = rect.left;
+      let y = rect.top;
+
+      const maxX =
+        window.innerWidth -
+        botaoNao.offsetWidth -
+        margem;
+
+      const maxY =
+        window.innerHeight -
+        botaoNao.offsetHeight -
+        margem;
+
+      x = Math.max(margem, Math.min(x, maxX));
+      y = Math.max(margem, Math.min(y, maxY));
+
+      botaoNao.style.left = x + "px";
+      botaoNao.style.top = y + "px";
+    });
+
+  </script>
+
+</body>
+</html>
+```
