@@ -1,26 +1,27 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff7fa">
+  <meta name="theme-color" content="#fff4f7">
 
   <title>Uma pergunta importante... ❤️</title>
 
   <style>
     :root {
       --rosa: #ff477e;
-      --rosa2: #ff7096;
+      --rosa-2: #ff7096;
       --vermelho: #f52f63;
       --texto: #34262b;
-      --texto2: #79656c;
+      --texto-2: #79656c;
       --branco: #ffffff;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -33,6 +34,7 @@
     body {
       min-height: 100dvh;
       overflow: hidden;
+
       font-family:
         Inter,
         -apple-system,
@@ -48,8 +50,9 @@
         linear-gradient(135deg, #fff1f5 0%, #ffd6e2 45%, #ffc1d3 100%);
 
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
       padding: 22px;
 
       position: relative;
@@ -61,17 +64,25 @@
 
     .blob {
       position: fixed;
+
       border-radius: 50%;
-      filter: blur(3px);
-      opacity: .35;
+
       pointer-events: none;
-      animation: blob 9s ease-in-out infinite alternate;
+
+      opacity: .35;
+
+      filter: blur(3px);
+
+      animation:
+        blob 9s ease-in-out infinite alternate;
     }
 
     .blob-1 {
       width: 330px;
       height: 330px;
+
       background: #ff91af;
+
       left: -120px;
       top: -100px;
     }
@@ -79,35 +90,60 @@
     .blob-2 {
       width: 400px;
       height: 400px;
-      background: #fff;
+
+      background: #ffffff;
+
       right: -170px;
       bottom: -180px;
+
       animation-delay: -3s;
     }
 
     @keyframes blob {
+
       from {
-        transform: translate(0, 0) scale(1);
+        transform:
+          translate(0, 0)
+          scale(1);
       }
 
       to {
-        transform: translate(35px, 20px) scale(1.12);
+        transform:
+          translate(35px, 20px)
+          scale(1.12);
       }
+
     }
+
+
+    /* =====================================================
+       CORAÇÕES DE FUNDO
+    ===================================================== */
 
     .coracao-fundo {
       position: fixed;
+
       bottom: -60px;
+
       pointer-events: none;
       user-select: none;
+
       opacity: 0;
-      animation: subir linear forwards;
+
       z-index: 0;
+
+      animation:
+        subir linear forwards;
     }
 
     @keyframes subir {
+
       0% {
-        transform: translateY(0) rotate(0deg) scale(.8);
+        transform:
+          translateY(0)
+          rotate(0deg)
+          scale(.8);
+
         opacity: 0;
       }
 
@@ -120,17 +156,24 @@
       }
 
       100% {
-        transform: translateY(-120vh) rotate(360deg) scale(1.3);
+        transform:
+          translateY(-120vh)
+          rotate(360deg)
+          scale(1.3);
+
         opacity: 0;
       }
+
     }
 
+
     /* =====================================================
-       CARD
+       CARD PRINCIPAL
     ===================================================== */
 
     .card {
       position: relative;
+
       z-index: 10;
 
       width: min(94vw, 540px);
@@ -139,9 +182,13 @@
 
       border-radius: 32px;
 
-      background: rgba(255, 255, 255, .82);
+      text-align: center;
 
-      border: 1px solid rgba(255,255,255,.8);
+      background:
+        rgba(255, 255, 255, .84);
+
+      border:
+        1px solid rgba(255,255,255,.85);
 
       box-shadow:
         0 30px 80px rgba(133, 44, 73, .17),
@@ -149,16 +196,19 @@
 
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-
-      text-align: center;
     }
 
     .badge {
       display: inline-flex;
+
       align-items: center;
+
       gap: 7px;
 
       padding: 8px 14px;
+
+      margin-bottom: 25px;
+
       border-radius: 100px;
 
       background: #fff0f5;
@@ -166,89 +216,113 @@
       color: #d83668;
 
       font-size: 13px;
-      font-weight: 700;
 
-      margin-bottom: 25px;
+      font-weight: 700;
     }
 
     .emoji-principal {
-      font-size: 68px;
-      line-height: 1;
+      display: inline-block;
 
       margin-bottom: 19px;
 
-      display: inline-block;
+      font-size: 68px;
 
-      animation: respirar 2.1s ease-in-out infinite;
+      line-height: 1;
+
+      animation:
+        respirar 2.1s ease-in-out infinite;
     }
 
     @keyframes respirar {
-      0%, 100% {
-        transform: scale(1) rotate(-2deg);
+
+      0%,
+      100% {
+        transform:
+          scale(1)
+          rotate(-2deg);
       }
 
       50% {
-        transform: scale(1.09) rotate(2deg);
+        transform:
+          scale(1.09)
+          rotate(2deg);
       }
+
     }
 
     h1 {
-      font-size: clamp(29px, 6vw, 42px);
-      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+
+      font-size:
+        clamp(29px, 6vw, 42px);
+
       line-height: 1.1;
 
-      margin-bottom: 15px;
+      letter-spacing: -1.5px;
     }
 
     #mensagem {
       min-height: 52px;
 
-      color: var(--texto2);
-
-      font-size: 17px;
-      line-height: 1.55;
-
       max-width: 420px;
+
       margin: auto;
 
-      transition: opacity .18s ease, transform .18s ease;
+      color: var(--texto-2);
+
+      font-size: 17px;
+
+      line-height: 1.55;
+
+      transition:
+        opacity .18s ease,
+        transform .18s ease;
     }
 
     .mensagem-trocando {
       opacity: 0;
-      transform: translateY(5px);
+
+      transform:
+        translateY(5px);
     }
+
 
     /* =====================================================
        BOTÕES
     ===================================================== */
 
     .area-botoes {
+      position: relative;
+
       min-height: 80px;
 
       margin-top: 27px;
 
       display: flex;
-      justify-content: center;
+
       align-items: center;
 
-      gap: 15px;
+      justify-content: center;
 
-      position: relative;
+      gap: 15px;
     }
 
     button {
       border: 0;
+
       outline: none;
 
       min-width: 125px;
 
-      padding: 16px 28px;
+      padding:
+        16px 28px;
 
       border-radius: 100px;
 
       font-family: inherit;
+
       font-size: 16px;
+
       font-weight: 800;
 
       cursor: pointer;
@@ -259,45 +333,58 @@
     #sim {
       position: relative;
 
-      background:
-        linear-gradient(135deg, var(--rosa), var(--vermelho));
+      z-index: 20;
 
       color: white;
 
+      background:
+        linear-gradient(
+          135deg,
+          var(--rosa),
+          var(--vermelho)
+        );
+
       box-shadow:
-        0 12px 30px rgba(245,47,99,.28);
+        0 12px 30px
+        rgba(245,47,99,.28);
 
       transition:
         transform .25s cubic-bezier(.2,.8,.2,1),
         box-shadow .25s ease;
-
-      z-index: 20;
     }
 
     #sim:hover {
+      transform:
+        scale(1.06);
+
       box-shadow:
-        0 16px 38px rgba(245,47,99,.38);
+        0 16px 38px
+        rgba(245,47,99,.38);
     }
 
     #sim:active {
-      filter: brightness(.96);
+      transform:
+        scale(.98);
     }
 
     #nao {
-      background: #f1edef;
-      color: #695c61;
-
       position: relative;
 
       z-index: 999;
 
+      color: #695c61;
+
+      background: #f1edef;
+
       transition:
         left .16s cubic-bezier(.2,.8,.2,1),
-        top .16s cubic-bezier(.2,.8,.2,1),
-        transform .15s ease;
+        top .16s cubic-bezier(.2,.8,.2,1);
 
-      will-change: left, top;
+      will-change:
+        left,
+        top;
     }
+
 
     /* =====================================================
        CONTADOR
@@ -311,16 +398,298 @@
       color: #aa7b89;
 
       font-size: 13px;
+
       font-weight: 600;
 
       opacity: 0;
 
-      transition: opacity .3s ease;
+      transition:
+        opacity .3s ease;
     }
 
     #contador.visivel {
       opacity: 1;
     }
+
+
+    /* =====================================================
+       OVERLAY DO FLYER
+    ===================================================== */
+
+    #flyerOverlay {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 5000;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 20px;
+
+      background:
+        rgba(64, 22, 38, .28);
+
+      backdrop-filter:
+        blur(5px);
+
+      -webkit-backdrop-filter:
+        blur(5px);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      transition:
+        opacity .35s ease,
+        visibility .35s ease;
+    }
+
+    #flyerOverlay.ativo {
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+    }
+
+
+    /* =====================================================
+       FLYER
+    ===================================================== */
+
+    .flyer {
+      position: relative;
+
+      width:
+        min(92vw, 430px);
+
+      padding:
+        40px 30px 30px;
+
+      border-radius:
+        32px;
+
+      text-align: center;
+
+      overflow: hidden;
+
+      background:
+        rgba(255,255,255,.97);
+
+      border:
+        1px solid rgba(255,255,255,.95);
+
+      box-shadow:
+        0 35px 100px
+        rgba(80,20,45,.35);
+
+      transform:
+        translateY(35px)
+        scale(.85);
+
+      opacity: 0;
+
+      transition:
+        transform .55s
+        cubic-bezier(.16,1,.3,1),
+        opacity .35s ease;
+    }
+
+    #flyerOverlay.ativo
+    .flyer {
+
+      transform:
+        translateY(0)
+        scale(1);
+
+      opacity: 1;
+    }
+
+    .flyer::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background:
+        #ffd6e2;
+
+      top: -100px;
+      right: -80px;
+
+      opacity: .6;
+    }
+
+    .flyer::after {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      border-radius: 50%;
+
+      background:
+        #ffe8ef;
+
+      left: -80px;
+      bottom: -90px;
+    }
+
+    .flyer-conteudo {
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .flyer-icone {
+      width: 88px;
+      height: 88px;
+
+      margin:
+        0 auto 18px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      border-radius: 50%;
+
+      font-size: 47px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0f5,
+          #ffd7e3
+        );
+
+      box-shadow:
+        0 15px 30px
+        rgba(244,69,119,.15);
+
+      animation:
+        flyerEmoji 1.2s
+        ease-in-out infinite alternate;
+    }
+
+    @keyframes flyerEmoji {
+
+      from {
+        transform:
+          rotate(-5deg)
+          scale(1);
+      }
+
+      to {
+        transform:
+          rotate(5deg)
+          scale(1.08);
+      }
+
+    }
+
+    .flyer-mini {
+      margin-bottom: 9px;
+
+      color: #d83e6c;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.3px;
+
+      text-transform: uppercase;
+    }
+
+    .flyer h2 {
+      margin-bottom: 14px;
+
+      color: #35252b;
+
+      font-size:
+        clamp(27px, 6vw, 35px);
+
+      line-height: 1.15;
+
+      letter-spacing: -1px;
+    }
+
+    .flyer-texto {
+      max-width: 340px;
+
+      margin:
+        0 auto 25px;
+
+      color: #78646b;
+
+      font-size: 16px;
+
+      line-height: 1.55;
+    }
+
+    .flyer-destaque {
+      color:
+        var(--vermelho);
+
+      font-weight: 800;
+    }
+
+    #entendi {
+      width: 100%;
+
+      padding: 16px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--rosa),
+          var(--vermelho)
+        );
+
+      box-shadow:
+        0 12px 28px
+        rgba(245,47,99,.25);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    #entendi:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 16px 35px
+        rgba(245,47,99,.32);
+    }
+
+    .flyer-legenda {
+      margin-top: 14px;
+
+      color: #b49ba4;
+
+      font-size: 12px;
+    }
+
 
     /* =====================================================
        TELA FINAL
@@ -328,21 +697,27 @@
 
     #final {
       position: fixed;
+
       inset: 0;
 
       z-index: 10000;
 
       display: none;
 
-      justify-content: center;
       align-items: center;
+
+      justify-content: center;
 
       padding: 25px;
 
-      background:
-        radial-gradient(circle at center, #ff8fab, #f54b78);
-
       overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #ff8fab,
+          #f54b78
+        );
     }
 
     #final.ativo {
@@ -351,71 +726,100 @@
 
     .final-conteudo {
       position: relative;
-      z-index: 10002;
 
-      text-align: center;
+      z-index: 10002;
 
       color: white;
 
-      animation: entradaFinal .7s cubic-bezier(.16,1,.3,1);
+      text-align: center;
+
+      animation:
+        entradaFinal .7s
+        cubic-bezier(.16,1,.3,1);
     }
 
     @keyframes entradaFinal {
+
       from {
         opacity: 0;
-        transform: translateY(30px) scale(.85);
+
+        transform:
+          translateY(30px)
+          scale(.85);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
+
     }
 
     .final-emoji {
-      font-size: clamp(80px, 15vw, 125px);
       margin-bottom: 20px;
 
-      animation: comemorar .7s ease-in-out infinite alternate;
+      font-size:
+        clamp(80px, 15vw, 125px);
+
+      animation:
+        comemorar .7s
+        ease-in-out infinite alternate;
     }
 
     @keyframes comemorar {
+
       from {
-        transform: rotate(-5deg) scale(1);
+        transform:
+          rotate(-5deg)
+          scale(1);
       }
 
       to {
-        transform: rotate(5deg) scale(1.08);
+        transform:
+          rotate(5deg)
+          scale(1.08);
       }
+
     }
 
     #final h2 {
-      font-size: clamp(40px, 9vw, 72px);
+      margin-bottom: 18px;
+
+      font-size:
+        clamp(40px, 9vw, 72px);
+
       line-height: 1;
 
       letter-spacing: -2px;
-
-      margin-bottom: 18px;
     }
 
     #final p {
-      font-size: clamp(17px, 4vw, 22px);
-      line-height: 1.5;
-
       max-width: 550px;
 
       margin: auto;
+
+      font-size:
+        clamp(17px, 4vw, 22px);
+
+      line-height: 1.5;
 
       opacity: .95;
     }
 
     .assinatura {
-      margin-top: 25px !important;
+      margin-top:
+        25px !important;
 
-      font-size: 14px !important;
+      font-size:
+        14px !important;
 
-      opacity: .75 !important;
+      opacity:
+        .75 !important;
     }
+
 
     /* =====================================================
        CONFETES
@@ -423,16 +827,19 @@
 
     .confete {
       position: fixed;
-      top: -80px;
 
-      pointer-events: none;
+      top: -80px;
 
       z-index: 10001;
 
-      animation: cair linear forwards;
+      pointer-events: none;
+
+      animation:
+        cair linear forwards;
     }
 
     @keyframes cair {
+
       from {
         transform:
           translateY(-10vh)
@@ -444,13 +851,16 @@
           translateY(120vh)
           rotate(900deg);
       }
+
     }
+
 
     /* =====================================================
        MOBILE
     ===================================================== */
 
-    @media (max-width: 600px) {
+    @media
+    (max-width: 600px) {
 
       body {
         padding: 16px;
@@ -458,8 +868,12 @@
 
       .card {
         width: 100%;
-        padding: 37px 20px 31px;
-        border-radius: 27px;
+
+        padding:
+          37px 20px 31px;
+
+        border-radius:
+          27px;
       }
 
       .emoji-principal {
@@ -472,11 +886,18 @@
 
       button {
         min-width: 115px;
-        padding: 15px 22px;
+
+        padding:
+          15px 22px;
       }
 
       .area-botoes {
         gap: 10px;
+      }
+
+      .flyer {
+        padding:
+          35px 23px 27px;
       }
 
     }
@@ -485,6 +906,8 @@
 </head>
 
 <body>
+
+  <!-- Fundo -->
 
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -500,7 +923,10 @@
       💌 Convite importante
     </div>
 
-    <div class="emoji-principal" id="emoji">
+    <div
+      class="emoji-principal"
+      id="emoji"
+    >
       🥺
     </div>
 
@@ -532,6 +958,58 @@
 
 
   <!-- ===================================================
+       FLYER FLUTUANTE
+  ==================================================== -->
+
+  <div id="flyerOverlay">
+
+    <div class="flyer">
+
+      <div class="flyer-conteudo">
+
+        <div class="flyer-icone">
+          😌
+        </div>
+
+        <div class="flyer-mini">
+          Parece que o destino decidiu
+        </div>
+
+        <h2>
+          Poxa... 😔
+        </h2>
+
+        <p class="flyer-texto">
+
+          Não conseguiu clicar no
+          <strong>“Não”</strong>...
+
+          <br><br>
+
+          Então acho que você vai ter que
+
+          <span class="flyer-destaque">
+            sair comigo. ❤️
+          </span>
+
+        </p>
+
+        <button id="entendi">
+          Tudo bem, eu aceito 😂❤️
+        </button>
+
+        <div class="flyer-legenda">
+          Reclamações não serão aceitas.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================
        FINAL
   ==================================================== -->
 
@@ -549,8 +1027,11 @@
 
       <p>
         Excelente escolha. ❤️
+
         <br>
-        Sabia que você era uma pessoa inteligente.
+
+        Sabia que você era uma pessoa
+        inteligente.
       </p>
 
       <p class="assinatura">
@@ -568,8 +1049,11 @@
        ELEMENTOS
     ===================================================== */
 
-    const nao = document.getElementById("nao");
-    const sim = document.getElementById("sim");
+    const nao =
+      document.getElementById("nao");
+
+    const sim =
+      document.getElementById("sim");
 
     const mensagem =
       document.getElementById("mensagem");
@@ -580,6 +1064,12 @@
     const emoji =
       document.getElementById("emoji");
 
+    const flyerOverlay =
+      document.getElementById("flyerOverlay");
+
+    const entendi =
+      document.getElementById("entendi");
+
     const final =
       document.getElementById("final");
 
@@ -589,13 +1079,16 @@
     ===================================================== */
 
     let tentativas = 0;
+
     let botaoSolto = false;
 
-    let escalaSim = 1;
+    let flyerMostrado = false;
+
+    let bloqueadoPeloFlyer = false;
 
 
     /* =====================================================
-       MENSAGENS
+       MENSAGENS DAS TENTATIVAS
     ===================================================== */
 
     const mensagens = [
@@ -603,68 +1096,32 @@
       {
         texto:
           "Ué... tentou clicar no Não? 🤨",
-        emoji: "🤨"
+
+        emoji:
+          "🤨"
       },
 
       {
         texto:
           "Acho que esse botão não está colaborando 😂",
-        emoji: "😂"
+
+        emoji:
+          "😂"
       },
 
       {
         texto:
           "Você está realmente insistindo nisso? 👀",
-        emoji: "👀"
-      },
 
-      {
-        texto:
-          "Talvez seja um sinal para escolher o outro botão...",
-        emoji: "😌"
-      },
-
-      {
-        texto:
-          "Desiste, você não vai conseguir 😂",
-        emoji: "😏"
-      },
-
-      {
-        texto:
-          "Olha o botão vermelho ali... ele parece bem mais simpático ❤️",
-        emoji: "🥰"
-      },
-
-      {
-        texto:
-          "Você ainda está tentando??? 😭",
-        emoji: "😭"
-      },
-
-      {
-        texto:
-          "Nesse ponto já virou uma questão de orgulho, né?",
-        emoji: "😂"
-      },
-
-      {
-        texto:
-          "Spoiler: só existe uma resposta possível. 👀",
-        emoji: "😈"
-      },
-
-      {
-        texto:
-          "Eu posso ficar aqui o dia inteiro.",
-        emoji: "😌"
+        emoji:
+          "👀"
       }
 
     ];
 
 
     /* =====================================================
-       ATUALIZA TEXTO
+       ALTERAR MENSAGEM
     ===================================================== */
 
     function atualizarMensagem() {
@@ -697,17 +1154,20 @@
 
 
     /* =====================================================
-       LIBERA BOTÃO DO FLUXO
+       SOLTAR BOTÃO NÃO
     ===================================================== */
 
     function soltarBotao() {
 
-      if (botaoSolto) return;
+      if (botaoSolto) {
+        return;
+      }
 
       const rect =
         nao.getBoundingClientRect();
 
-      nao.style.position = "fixed";
+      nao.style.position =
+        "fixed";
 
       nao.style.left =
         rect.left + "px";
@@ -715,7 +1175,8 @@
       nao.style.top =
         rect.top + "px";
 
-      nao.style.margin = "0";
+      nao.style.margin =
+        "0";
 
       botaoSolto = true;
 
@@ -724,60 +1185,76 @@
 
     /* =====================================================
        POSIÇÃO SEGURA
+
+       Nunca permite que o botão saia da tela.
     ===================================================== */
 
-    function posicaoSegura() {
+    function gerarPosicaoSegura() {
 
-      const margem = 18;
+      const margem = 20;
 
-      const largura =
+      const larguraBotao =
         nao.offsetWidth;
 
-      const altura =
+      const alturaBotao =
         nao.offsetHeight;
 
       const maxX =
         window.innerWidth -
-        largura -
+        larguraBotao -
         margem;
 
       const maxY =
         window.innerHeight -
-        altura -
+        alturaBotao -
         margem;
 
       const x =
         margem +
         Math.random() *
-        Math.max(0, maxX - margem);
+        Math.max(
+          0,
+          maxX - margem
+        );
 
       const y =
         margem +
         Math.random() *
-        Math.max(0, maxY - margem);
+        Math.max(
+          0,
+          maxY - margem
+        );
 
-      return { x, y };
+      return {
+        x,
+        y
+      };
 
     }
 
 
     /* =====================================================
-       FAZ O NÃO FUGIR
+       BOTÃO NÃO FOGE
     ===================================================== */
 
     function fugir() {
+
+      if (
+        bloqueadoPeloFlyer ||
+        final.classList.contains("ativo")
+      ) {
+        return;
+      }
 
       soltarBotao();
 
       tentativas++;
 
 
-      /* -------------------------
-         Nova posição
-      ------------------------- */
+      /* Nova posição */
 
       const destino =
-        posicaoSegura();
+        gerarPosicaoSegura();
 
       nao.style.left =
         destino.x + "px";
@@ -786,54 +1263,107 @@
         destino.y + "px";
 
 
-      /* -------------------------
-         Mensagem
-      ------------------------- */
+      /* Atualiza texto */
 
       atualizarMensagem();
 
 
-      /* -------------------------
-         Contador
-      ------------------------- */
+      /* Contador */
 
-      if (tentativas >= 3) {
+      contador.classList.add(
+        "visivel"
+      );
 
-        contador.classList.add(
-          "visivel"
-        );
+      if (tentativas === 1) {
 
         contador.textContent =
-          `${tentativas} tentativas de dizer não. Impressionante 😂`;
+          "1 tentativa de clicar no Não 👀";
+
+      } else {
+
+        contador.textContent =
+          `${tentativas} tentativas de clicar no Não 😂`;
 
       }
 
 
-      /* -------------------------
-         SIM cresce
-      ------------------------- */
+      /* =================================================
+         3 TENTATIVAS = FLYER
+      ================================================= */
 
-      escalaSim =
-        Math.min(
-          1 + tentativas * 0.035,
-          1.32
-        );
+      if (tentativas >= 3) {
 
-      sim.style.transform =
-        `scale(${escalaSim})`;
+        setTimeout(() => {
+
+          mostrarFlyer();
+
+        }, 350);
+
+      }
 
     }
 
 
     /* =====================================================
-       DETECÇÃO DO MOUSE
+       MOSTRAR FLYER
+    ===================================================== */
 
-       O botão foge ANTES do cursor chegar nele.
+    function mostrarFlyer() {
+
+      if (flyerMostrado) {
+        return;
+      }
+
+      if (
+        final.classList.contains("ativo")
+      ) {
+        return;
+      }
+
+      flyerMostrado = true;
+
+      bloqueadoPeloFlyer = true;
+
+      flyerOverlay.classList.add(
+        "ativo"
+      );
+
+    }
+
+
+    /* =====================================================
+       TIMER
+
+       Se a pessoa não tentar 3 vezes,
+       o flyer aparece sozinho depois
+       de 8 segundos.
+    ===================================================== */
+
+    const timerFlyer =
+      setTimeout(() => {
+
+        mostrarFlyer();
+
+      }, 8000);
+
+
+    /* =====================================================
+       MOUSE
+
+       Detecta a aproximação antes do
+       cursor chegar no botão.
     ===================================================== */
 
     document.addEventListener(
       "mousemove",
       (event) => {
+
+        if (
+          bloqueadoPeloFlyer ||
+          flyerMostrado
+        ) {
+          return;
+        }
 
         const rect =
           nao.getBoundingClientRect();
@@ -860,13 +1390,19 @@
             dy * dy
           );
 
+
         /*
-          Distância de segurança.
-          O mouse nem precisa encostar.
+
+          O botão começa a fugir
+          quando o cursor chega a
+          105px do centro.
+
         */
 
         if (distancia < 105) {
+
           fugir();
+
         }
 
       }
@@ -874,12 +1410,18 @@
 
 
     /* =====================================================
-       SEGURANÇAS EXTRAS
+       PROTEÇÕES EXTRAS
     ===================================================== */
 
     nao.addEventListener(
       "mouseenter",
-      fugir
+      () => {
+
+        if (!bloqueadoPeloFlyer) {
+          fugir();
+        }
+
+      }
     );
 
 
@@ -888,7 +1430,10 @@
       (event) => {
 
         event.preventDefault();
-        fugir();
+
+        if (!bloqueadoPeloFlyer) {
+          fugir();
+        }
 
       }
     );
@@ -899,7 +1444,10 @@
       (event) => {
 
         event.preventDefault();
-        fugir();
+
+        if (!bloqueadoPeloFlyer) {
+          fugir();
+        }
 
       }
     );
@@ -915,9 +1463,14 @@
 
         event.preventDefault();
 
-        fugir();
+        if (!bloqueadoPeloFlyer) {
+
+          fugir();
+
+        }
 
       },
+
       {
         passive: false
       }
@@ -925,30 +1478,79 @@
 
 
     /* =====================================================
-       CLIQUE NO SIM
+       BOTÃO DO FLYER
+
+       Ao aceitar no flyer, já vamos
+       diretamente para a comemoração.
     ===================================================== */
 
-    sim.addEventListener(
+    entendi.addEventListener(
       "click",
       () => {
 
-        final.classList.add(
+        flyerOverlay.classList.remove(
           "ativo"
         );
 
-        explosao();
+        setTimeout(() => {
+
+          mostrarFinal();
+
+        }, 200);
 
       }
     );
 
 
     /* =====================================================
+       BOTÃO SIM
+    ===================================================== */
+
+    sim.addEventListener(
+      "click",
+      () => {
+
+        clearTimeout(
+          timerFlyer
+        );
+
+        mostrarFinal();
+
+      }
+    );
+
+
+    /* =====================================================
+       MOSTRAR FINAL
+    ===================================================== */
+
+    function mostrarFinal() {
+
+      clearTimeout(
+        timerFlyer
+      );
+
+      flyerOverlay.classList.remove(
+        "ativo"
+      );
+
+      final.classList.add(
+        "ativo"
+      );
+
+      criarExplosao();
+
+    }
+
+
+    /* =====================================================
        CONFETES
     ===================================================== */
 
-    function explosao() {
+    function criarExplosao() {
 
       const itens = [
+
         "❤️",
         "💕",
         "💖",
@@ -957,11 +1559,13 @@
         "✨",
         "🥰",
         "🌹"
+
       ];
+
 
       for (
         let i = 0;
-        i < 120;
+        i < 130;
         i++
       ) {
 
@@ -1004,12 +1608,13 @@
             item
           );
 
+
           setTimeout(
             () => item.remove(),
             6000
           );
 
-        }, i * 20);
+        }, i * 18);
 
       }
 
@@ -1017,7 +1622,7 @@
 
 
     /* =====================================================
-       CORAÇÕES DO FUNDO
+       CORAÇÕES NO FUNDO
     ===================================================== */
 
     function criarCoracao() {
@@ -1030,6 +1635,7 @@
         return;
       }
 
+
       const coracao =
         document.createElement(
           "div"
@@ -1038,11 +1644,15 @@
       coracao.className =
         "coracao-fundo";
 
+
       const opcoes = [
+
         "♡",
         "♥",
         "💕"
+
       ];
+
 
       coracao.textContent =
         opcoes[
@@ -1052,10 +1662,12 @@
           )
         ];
 
+
       coracao.style.left =
         Math.random() *
         100 +
         "vw";
+
 
       coracao.style.fontSize =
         14 +
@@ -1063,15 +1675,18 @@
         25 +
         "px";
 
+
       coracao.style.animationDuration =
         7 +
         Math.random() *
         6 +
         "s";
 
+
       document.body.appendChild(
         coracao
       );
+
 
       setTimeout(
         () => coracao.remove(),
@@ -1090,30 +1705,39 @@
     /* =====================================================
        RESIZE
 
-       Se virar o celular ou redimensionar
-       o navegador, o botão continua visível.
+       Mantém o botão Não dentro da
+       tela ao redimensionar navegador
+       ou girar o celular.
     ===================================================== */
 
     window.addEventListener(
       "resize",
       () => {
 
-        if (!botaoSolto) return;
+        if (!botaoSolto) {
+          return;
+        }
 
-        const margem = 18;
+
+        const margem =
+          20;
+
 
         const rect =
           nao.getBoundingClientRect();
+
 
         const maxX =
           window.innerWidth -
           nao.offsetWidth -
           margem;
 
+
         const maxY =
           window.innerHeight -
           nao.offsetHeight -
           margem;
+
 
         const x =
           Math.max(
@@ -1124,6 +1748,7 @@
             )
           );
 
+
         const y =
           Math.max(
             margem,
@@ -1133,8 +1758,10 @@
             )
           );
 
+
         nao.style.left =
           x + "px";
+
 
         nao.style.top =
           y + "px";
